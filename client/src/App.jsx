@@ -2,7 +2,7 @@ import { useState, useCallback, useRef } from 'react';
 import Editor from '@monaco-editor/react';
 import UsersList from './components/UsersList';
 import { useSocket } from './hooks/useSocket';
-import { createCursorDecoration } from './utils/decorations';
+import { createCursorDecoration, randomNumber } from './utils/decorations';
 import './App.css';
 
 function App() {
@@ -11,6 +11,7 @@ function App() {
   const [users, setUsers] = useState([]);
   const [content, setContent] = useState('// Start coding here...');
   const cursorsRef = useRef(new Map());
+  const userNumber = useRef(randomNumber());
 
   const handleUsers = useCallback((updatedUsers) => {
     setUsers(updatedUsers);
@@ -24,7 +25,7 @@ function App() {
 
     // Create decorations for all cursors
     const newDecorations = Array.from(cursorsRef.current.entries())
-      .map(([id, pos]) => createCursorDecoration(id, pos));
+      .map(([id, pos]) => createCursorDecoration(id, pos, userNumber.current === 0 ? 'red' : 'blue'));
 
     // Update decorations
     const applied = editorRef.current.deltaDecorations(decorations, newDecorations);
@@ -76,13 +77,14 @@ function App() {
         <UsersList users={users} />
         <Editor
           height="70vh"
+          width="100%"
           defaultLanguage="javascript"
           theme="vs-dark"
           value={content}
           onMount={handleEditorDidMount}
           onChange={handleEditorChange}
           options={{
-            minimap: { enabled: false },
+            minimap: { enabled: true },
             fontSize: 14,
             lineNumbers: 'on',
             roundedSelection: false,

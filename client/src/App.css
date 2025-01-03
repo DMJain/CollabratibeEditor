@@ -1,12 +1,18 @@
 .app-container {
   padding: 20px;
-  max-width: 1200px;
+  width: 100vw;
   margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: #2d2d2d solid 1px;
 }
 
 .editor-container {
   display: flex;
+  width: 80%;
   flex-direction: column;
+  align-items: center;
   gap: 20px;
 }
 
@@ -15,6 +21,7 @@
   padding: 15px;
   border-radius: 5px;
   color: white;
+  width: 100%;
 }
 
 .users-list ul {
@@ -38,6 +45,48 @@
 
 /* Generate different colors for different users */
 .cursor-decoration::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: inherit;
+}
+
+.cursor-decoration-red {
+  background: rgb(250, 0, 0);
+  width: 2px !important;
+  margin-left: -1px;
+  z-index: 100;
+  pointer-events: none;
+  position: relative;
+}
+
+/* Generate different colors for different users */
+.cursor-decoration-red::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: inherit;
+}
+
+.cursor-decoration-blue {
+  background: rgb(0, 171, 250);
+  width: 2px !important;
+  margin-left: -1px;
+  z-index: 100;
+  pointer-events: none;
+  position: relative;
+}
+
+/* Generate different colors for different users */
+.cursor-decoration-blue::after {
   content: '';
   position: absolute;
   top: -2px;
