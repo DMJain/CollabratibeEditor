@@ -1,0 +1,49 @@
+.app-container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.editor-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.users-list {
+  background: #2d2d2d;
+  padding: 15px;
+  border-radius: 5px;
+  color: white;
+}
+
+.users-list ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.users-list li {
+  padding: 5px 0;
+}
+
+.cursor-decoration {
+  background: rgba(250, 200, 0, 0.5);
+  width: 2px !important;
+  margin-left: -1px;
+  z-index: 100;
+  pointer-events: none;
+  position: relative;
+}
+
+/* Generate different colors for different users */
+.cursor-decoration::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: inherit;
+}
